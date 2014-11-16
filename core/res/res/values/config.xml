@@ -153,6 +153,7 @@
     <integer name="config_longAnimTime">250</integer>
 
     <!-- The duration (in milliseconds) of the activity open/close and fragment open/close animations. -->
+
     <integer name="config_activityShortDur">72</integer>
     <integer name="config_activityDefaultDur">106</integer>
 
