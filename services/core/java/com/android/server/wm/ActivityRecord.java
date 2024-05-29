@@ -3534,7 +3534,8 @@ public final class ActivityRecord extends WindowToken implements WindowManagerSe
         }
 
         final Task rootTask = getRootTask();
-        final boolean mayAdjustTop = (isState(RESUMED) || rootTask.getTopResumedActivity() == null)
+        final boolean mayAdjustTop = rootTask != null
+                && (isState(RESUMED) || rootTask.getTopResumedActivity() == null)
                 && rootTask.isFocusedRootTaskOnDisplay()
                 // Do not adjust focus task because the task will be reused to launch new activity.
                 && !task.isClearingToReuseTask();
@@ -3893,6 +3894,7 @@ public final class ActivityRecord extends WindowToken implements WindowManagerSe
         boolean removedFromHistory = false;
 
         cleanUp(false /* cleanServices */, false /* setState */);
+        setVisibleRequested(false);
 
         if (hasProcess()) {
             app.removeActivity(this, true /* keepAssociation */);
